@@ -41,9 +41,9 @@ leitura = None
 deu_erro = False
 try:
     leitura = buscar_ultima_leitura(api_url)
-except requests.exceptions.RequestException:
+except requests.exceptions.RequestException as e:
     deu_erro = True
-    st.error("Não foi possível conectar na API. Verifique se o uvicorn está rodando e se o endereço está certo.")
+    st.error(f"Não foi possível conectar na API: {e}")
 
 if leitura is None and not deu_erro:
     st.info("Ainda não existe nenhuma leitura no banco de dados.")
